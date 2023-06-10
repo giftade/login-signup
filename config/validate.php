@@ -29,10 +29,7 @@ if(isset($_POST['submit'])){
  
   //Adding to database
   if(empty($nameErr ||  $emailErr || $passwordErr)){
-  //    header('Location: ../views/index.php');
-  // if($name && $email && $password){
-  //   $_SESSION['name'] = $name;
-  //}
+ 
     $sql = 'INSERT INTO `user_cred` SET
       `name` = :name,
       `email` = :email,
@@ -48,9 +45,6 @@ if(isset($_POST['submit'])){
 
  
 }
-// echo '<pre>';
-// var_dump($_SESSION);
-// '</pre>';
 
 
 ?>
