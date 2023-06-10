@@ -1,7 +1,8 @@
+
 <?php
 session_start();
 $name = $email = $password = '';
-$nameErr = $emailErr = $password = '';
+$nameErr = $emailErr = $passwordErr = '';
 
 if(isset($_POST['submit'])){
 
@@ -25,15 +26,18 @@ if(isset($_POST['submit'])){
   } else {
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
   }
-  header('Location: ../views/index.php');
+ 
+  if(empty($nameErr ||  $emailErr || $passwordErr)){
+     header('Location: ../views/index.php');
   if($name && $email && $password){
     $_SESSION['name'] = $name;
   }
+  }
+ 
 }
 // echo '<pre>';
 // var_dump($_SESSION);
 // '</pre>';
-
 
 
 ?>

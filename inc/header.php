@@ -13,4 +13,4 @@
 </head>
 
 <body>
-  <div class="container d-flex flex-column  mt-5 bg-danger p-5">
+  <div class="container d-flex flex-column  mt-5  p-5">
