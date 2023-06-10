@@ -27,12 +27,25 @@ if(isset($_POST['submit'])){
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
   }
  
+  //Adding to database
   if(empty($nameErr ||  $emailErr || $passwordErr)){
-     header('Location: ../views/index.php');
-  if($name && $email && $password){
-    $_SESSION['name'] = $name;
+  //    header('Location: ../views/index.php');
+  // if($name && $email && $password){
+  //   $_SESSION['name'] = $name;
+  //}
+    $sql = 'INSERT INTO `user_cred` SET
+      `name` = :name,
+      `email` = :email,
+      `password` = :password';
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':name', $name);
+    $stmt->bindValue(':email', $email);
+    $stmt->bindValue(':password', $password);
+    $stmt->execute();
   }
-  }
+
+  
+
  
 }
 // echo '<pre>';
