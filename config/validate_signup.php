@@ -1,6 +1,5 @@
 
 <?php
-session_start();
 $name = $email = $password = '';
 $nameErr = $emailErr = $emailReg = $invalidEmail = $nameTaken = $passwordInvalid =  $passwordErr = '';
 
