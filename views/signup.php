@@ -3,7 +3,7 @@
 <?php include __DIR__ . '/../config/validate_signup.php'; ?>
 
 
-<h2>Signup</h2>
+<h2>Sign Up</h2>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
   <div class="form-group">
     <label for="name">Name:</label>
@@ -24,10 +24,11 @@
   </div>
   <div class="form-group">
     <label for="password">Password:</label>
-    <input type="password" class="form-control <?php echo $passwordErr ? 'is-invalid' : null ?>" id="password" name="password">
+    <input type="password" class="form-control <?php echo $passwordInvalid ? 'is-invalid' : null ?> <?php echo $passwordErr ? 'is-invalid' : null ?>" id="password" name="password">
     <div class="invalid-feedback">
       <?php echo $passwordErr ?>
+      <?php echo $passwordInvalid ?>
     </div>
   </div>
-  <input type="submit" name="submit" class="btn btn-primary">
+  <input type="submit" name="submit" value="Sign Up" class="btn btn-primary">
 </form>

@@ -2,7 +2,11 @@
 <?php
 session_start();
 $name = $email = $password = '';
-$nameErr = $emailErr = $emailReg = $invalidEmail = $nameTaken =   $passwordErr = '';
+$nameErr = $emailErr = $emailReg = $invalidEmail = $nameTaken = $passwordInvalid =  $passwordErr = '';
+
+// Define the password validation pattern
+$pattern = '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/';
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -24,8 +28,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   if (empty($_POST['password'])) {
     $passwordErr = 'Password is required';
   } else {
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
-  }
+    // Check if the password matches the pattern
+    if (preg_match($pattern, $_POST['password'])) {
+       $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+  
+    } else {
+      // Password does not meet the requirements
+      $passwordInvalid = "Password is invalid" . '</br>'.
+        " it must contain:" . '</br>' .
+      "At least one letter (uppercase or lowercase)". '</br>'.
+     " At least one digit" . '</br>' .
+     " At least one special character from the set @$!%*#?&" . '</br>' .
+     " Length of at least 8 characters";
+    }
+ }
 
   //Check if username is already taken
   $stmt = $pdo->prepare("SELECT id FROM user_cred WHERE name = :name");
@@ -52,7 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   }
 
   //Adding to database
-  if(empty($nameErr ||  $emailErr || $passwordErr || $emailReg || $invalidEmail || $nameTaken)){
+  if(empty($nameErr ||  $emailErr || $passwordErr || $emailReg || $invalidEmail || $nameTaken || $passwordInvalid)){
 
  $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $sql = 'INSERT INTO `user_cred` SET
@@ -73,6 +89,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
  
 }
+
+
 
 
 ?>
