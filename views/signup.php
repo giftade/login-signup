@@ -1,27 +1,21 @@
-<?php include __DIR__ . '/../config/database.php'?>
+<?php include __DIR__ . '/../config/database.php' ?>
 <?php include __DIR__ . "/../inc/header.php" ?>
-<?php include __DIR__ . '/../config/validate.php';
-          
-?>
+<?php include __DIR__ . '/../config/validate.php'; ?>
+<?php $action =  '../config/validate.php' ;?>
 
-<form action="<?php echo htmlspecialchars('/config/validate.php' ) ?>" class="mt-4 d-flex flex-column w-75  p-5" method="POST">
-  <!-- Name input  -->
-  <div class="mb-3 w-50">
-    <input type="text" required maxlength="50" class="form-control px-5  w-100" name="name" placeholder="Input name">
+<h2>Signup</h2>
+<form method="post" action="<?php echo htmlspecialchars($action); ?>">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" name="name" required>
   </div>
-
-  <!-- Email input  -->
-  <div class="mb-3 w-50">
-    <input type="email" required class="form-control px-5  w-100" name="email" placeholder="Input email">
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" name="email" required>
   </div>
-
-  <!-- Password input  -->
-  <div class="mb-3 w-50">
-    <input type="password" required class="form-control px-5  w-100" name="password" placeholder="Input password">
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password" name="password" required>
   </div>
-
-  <div class="mb-3 form-group">
-    <input type="submit" name="submit" value="Sign Up" class="btn btn-dark w-50">
-  </div>
-
+  <input type="submit" name="submit" class="btn btn-primary">
 </form>

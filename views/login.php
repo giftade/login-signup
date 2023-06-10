@@ -1,20 +1,15 @@
 <?php include __DIR__ . "/../inc/header.php"  ?>
 
 
-<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])  ?>" class="mt-4 d-flex flex-column w-75  p-5" method="POST">
- 
-  <!-- Email input  -->
-  <div class="mb-3 w-50">
-    <input type="email" class="form-control px-5  w-100" name="email" placeholder="Input email">
-  </div>
-
-  <!-- Password input  -->
-  <div class="mb-3 w-50">
-    <input type="password" class="form-control px-5  w-100" name="password" placeholder="Input password">
-  </div>
-
-  <div class="mb-3 form-group">
-    <input type="submit" name="submit" value="Log In" class="btn btn-dark w-50">
-  </div>
-
-</form>
+  <h2>Login</h2>
+  <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
